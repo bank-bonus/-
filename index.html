@@ -2,143 +2,94 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS2 Case Opening</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CS2 Case Clicker</title>
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
+        <!-- Верхняя панель (Меню + Баланс) -->
         <div class="top-bar">
             <div class="tabs">
-                <button class="tab-button active" data-tab="case-opening">Открытие кейсов</button>
-                <button class="tab-button" data-tab="clicker">Заработок</button>
+                <button class="tab-button active" data-tab="clicker">Кликер</button>
+                <button class="tab-button" data-tab="case-opening">Кейсы</button>
                 <button class="tab-button" data-tab="inventory">Инвентарь</button>
-                <button class="tab-button" data-tab="leaderboard">Рекордсмены</button>
             </div>
             <div class="balance">
-                <span>Баланс: </span>
-                <span id="balance">1000</span>
-                <span>₽</span>
+                <span id="balance">0</span> ₽
             </div>
         </div>
 
+        <!-- Контент -->
         <div class="tab-content">
-            <div id="case-opening" class="tab-pane active">
-                <div class="case-container">
-                    <div class="cases-grid">
-                        <div class="case" data-case="dreams">
-                            <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg/256fx256f" alt="Dreams & Nightmares Case">
-                            <div class="case-info">
-                                <h2>Dreams & Nightmares Case</h2>
-                                <p class="price">299₽</p>
-                            </div>
-                            <button class="open-button">Открыть кейс</button>
-                            <button class="show-contents-button">Показать содержимое</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="case-opening-header">
-                    <h2>Открытие кейса</h2>
-                    <div class="selected-case-info">
-                        <img id="selected-case-image" src="" alt="Selected Case">
-                        <div class="case-details">
-                            <h3 id="selected-case-name"></h3>
-                            <p class="price">Цена: <span id="selected-case-price"></span>₽</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="roulette-container">
-                    <div class="roulette">
-                        <div class="items-container"></div>
-                    </div>
-                </div>
-
-                <div id="case-contents" style="display: none;">
-                    <h2>Содержимое кейса</h2>
-                    <div class="rarity-section">
-                        <h3>Тайные</h3>
-                        <div class="covert-items"></div>
-                    </div>
-                    <div class="rarity-section">
-                        <h3>Засекреченные</h3>
-                        <div class="classified-items"></div>
-                    </div>
-                    <div class="rarity-section">
-                        <h3>Запрещённые</h3>
-                        <div class="restricted-items"></div>
-                    </div>
-                    <div class="rarity-section">
-                        <h3>Армейские</h3>
-                        <div class="milspec-items"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="clicker" class="tab-pane">
+            
+            <!-- Вкладка 1: Кликер (Двухколоночный вид) -->
+            <div id="clicker" class="tab-pane active">
                 <div class="clicker-container">
-                    <div class="clicker-stats">
-                        <div class="stat">
-                            <span>Монет за клик: </span>
-                            <span id="clickValue">1</span>
-                        </div>
-                        <div class="stat">
-                            <span>Монет в секунду: </span>
-                            <span id="autoClickValue">0</span>
-                        </div>
-                    </div>
-                    
+                    <!-- Левая часть: Кнопка -->
                     <div class="clicker-area">
+                        <div class="clicker-stats">
+                            <div class="stat">За клик: <span id="clickValue">1</span></div>
+                            <div class="stat">Сек: <span id="autoClickValue">0</span></div>
+                        </div>
                         <div id="clickerButton" class="clicker-button">
-                            <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopamie19f0Ob3Yi5FvISJkJKKkPr1Ibnum25V4dB8xLyXpI7w3AE5-0RtZzqiJYKdcQU4Y1_X_1W_k-_vjZTt7pzLmnNn6XQj-z-DyALmm9CS/360fx360f" alt="Click me!">
+                            <!-- Просто текст или иконка вместо картинки -->
+                            <h1 style="font-size: 40px;">TAP</h1>
                         </div>
                     </div>
                     
+                    <!-- Правая часть: Улучшения -->
                     <div class="upgrades">
                         <div id="clickUpgrade" class="upgrade-item">
                             <div class="upgrade-info">
-                                <h4>Улучшить клик</h4>
-                                <p>Увеличивает количество монет за клик</p>
-                                <p class="price">Цена: <span id="clickUpgradePrice">10</span>₽</p>
+                                <h4>Урон клика</h4>
+                                <p>Больше денег за нажатие</p>
+                                <p class="price"><span id="clickUpgradePrice">10</span> ₽</p>
                             </div>
-                            <button class="upgrade-button">Улучшить</button>
+                            <button class="upgrade-button">Купить</button>
                         </div>
                         <div id="autoClickUpgrade" class="upgrade-item">
                             <div class="upgrade-info">
-                                <h4>Улучшить авто-клик</h4>
-                                <p>Увеличивает количество монет в секунду</p>
-                                <p class="price">Цена: <span id="autoClickUpgradePrice">50</span>₽</p>
+                                <h4>Авто-клик</h4>
+                                <p>Деньги каждую секунду</p>
+                                <p class="price"><span id="autoClickUpgradePrice">50</span> ₽</p>
                             </div>
-                            <button class="upgrade-button">Улучшить</button>
+                            <button class="upgrade-button">Купить</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="inventory" class="tab-pane">
-                <div class="inventory">
-                    <div class="inventory-controls">
-                        <h2>Ваш инвентарь</h2>
-                        <button id="sellAll" class="button">Продать всё</button>
+            <!-- Вкладка 2: Открытие кейсов -->
+            <div id="case-opening" class="tab-pane">
+                <!-- Рулетка (Скрыта пока не нажали открыть) -->
+                <div class="roulette-container">
+                    <div class="roulette-pointer"></div>
+                    <div class="items-container"></div>
+                </div>
+
+                <div class="cases-grid">
+                    <div class="case" data-case="dreams">
+                        <!-- Заглушка кейса -->
+                        <div class="placeholder-img" style="border-color: #ffd700; color: #ffd700;">КЕЙС</div>
+                        <div class="case-info">
+                            <h2>Dreams Case</h2>
+                            <p class="price">299 ₽</p>
+                        </div>
+                        <button class="open-button">Открыть</button>
                     </div>
-                    <div id="inventoryItems" class="inventory-items"></div>
                 </div>
             </div>
 
-            <div id="leaderboard" class="tab-pane">
-                <div class="leaderboard-container">
-                    <h2>Топ игроков</h2>
-                    <div class="leaderboard-categories">
-                        <button class="category-button active" data-category="balance">По балансу</button>
-                        <button class="category-button" data-category="inventory">По стоимости инвентаря</button>
-                        <button class="category-button" data-category="cases">По открытым кейсам</button>
-                    </div>
-                    <div class="leaderboard-list"></div>
-                </div>
+            <!-- Вкладка 3: Инвентарь -->
+            <div id="inventory" class="tab-pane">
+                <button id="sellAll" class="sell-button" style="margin-bottom: 20px; background: #d32f2f;">Продать всё</button>
+                <div id="inventoryItems" class="inventory-items"></div>
             </div>
+
         </div>
     </div>
     <script src="script.js"></script>
 </body>
-</html> 
+    </html>
